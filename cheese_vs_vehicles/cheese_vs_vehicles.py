@@ -4,10 +4,15 @@ import seaborn as sns
 from matplotlib.ticker import FuncFormatter
 from typing import Dict, Tuple
 
+POUNDS_TO_KG = 2.20462
 
-def get_vehicle_prices_per_pound(vehicles: Dict[str, Tuple[int, int]]) -> Dict[str, float]:
-    """Calculate price per pound for vehicles."""
-    return {name: price / weight for name, (price, weight) in vehicles.items()}
+
+def get_vehicle_prices_per_kg(vehicles: dict[str, tuple[float, float]]) -> dict[str, float]:
+    return {name: price / weight * POUNDS_TO_KG for name, (price, weight) in vehicles.items()}
+
+
+def get_cheese_prices_per_kg(cheeses: dict[str, float]) -> dict[str, float]:
+    return {name: price * POUNDS_TO_KG for name, price in cheeses.items()}
 
 
 def create_price_dataframe(items: Dict[str, float], category: str) -> pd.DataFrame:
@@ -149,8 +154,9 @@ def main():
         "Roquefort": 31.00,
     }
 
-    vehicle_prices = get_vehicle_prices_per_pound(vehicles)
-    plot_price_comparison(vehicle_prices, cheeses)
+    vehicle_prices = get_vehicle_prices_per_kg(vehicles)
+    cheeses_prices = get_cheese_prices_per_kg(cheeses)
+    plot_price_comparison(vehicle_prices, cheeses_prices)
 
 
 if __name__ == "__main__":
