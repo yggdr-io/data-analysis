@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from matplotlib.ticker import FuncFormatter
-from typing import Dict, Tuple
 
 POUNDS_TO_KG = 2.20462
 
@@ -15,7 +14,7 @@ def get_cheese_prices_per_kg(cheeses: dict[str, float]) -> dict[str, float]:
     return {name: price * POUNDS_TO_KG for name, price in cheeses.items()}
 
 
-def create_price_dataframe(items: Dict[str, float], category: str) -> pd.DataFrame:
+def create_price_dataframe(items: dict[str, float], category: str) -> pd.DataFrame:
     """Create a DataFrame for items with their prices and category."""
     return pd.DataFrame.from_dict(
         {
@@ -34,7 +33,7 @@ def dollar_formatter(x: float, pos: int) -> str:
         return f"${x:.2f}"
 
 
-def plot_price_comparison(vehicle_prices: Dict[str, float], cheese_prices: Dict[str, float]) -> None:
+def plot_price_comparison(vehicle_prices: dict[str, float], cheese_prices: dict[str, float]) -> None:
     """Plot a comparison bar chart of price per pound for vehicles and cheeses."""
 
     vehicle_df = create_price_dataframe(vehicle_prices, "Vehicle")
