@@ -41,7 +41,11 @@ def dollar_formatter(x: float, pos: int) -> str:
         return f"${x:.2f}"
 
 
-def plot_price_comparison(vehicle_prices: dict[str, float], cheese_prices: dict[str, float]) -> None:
+def plot_price_comparison(
+    vehicle_prices: dict[str, float],
+    cheese_prices: dict[str, float],
+    save_path: str | None = None,
+) -> None:
     """Plot a comparison bar chart of price per pound for vehicles and cheeses."""
 
     vehicle_df = create_price_dataframe(vehicle_prices, "Vehicle")
@@ -72,7 +76,9 @@ def plot_price_comparison(vehicle_prices: dict[str, float], cheese_prices: dict[
     plt.xscale("log")
     plt.grid(True, which="both", linestyle="--", linewidth=0.5, axis="x")
     plt.xlim(5, 400)
-    plt.legend(fontsize=20, title_fontsize=20, bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.legend(
+        fontsize=20, title_fontsize=20, bbox_to_anchor=(1.05, 1), loc="upper left"
+    )
 
     ax = plt.gca()
     ax.xaxis.set_major_formatter(FuncFormatter(dollar_formatter))
@@ -82,7 +88,10 @@ def plot_price_comparison(vehicle_prices: dict[str, float], cheese_prices: dict[
     ax.xaxis.set_ticklabels([f"${x}" for x in dollar_ticks], minor=True, fontsize=8)
 
     plt.tight_layout()
-    plt.show()
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    else:
+        plt.show()
 
 
 def main():
@@ -163,7 +172,9 @@ def main():
 
     vehicle_prices = get_vehicle_prices_per_kg(vehicles)
     cheeses_prices = get_cheese_prices_per_kg(cheeses)
-    plot_price_comparison(vehicle_prices, cheeses_prices)
+    plot_price_comparison(
+        vehicle_prices, cheeses_prices, save_path="price_comparison.png"
+    )
 
 
 if __name__ == "__main__":
