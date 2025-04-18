@@ -6,12 +6,20 @@ from matplotlib.ticker import FuncFormatter
 POUNDS_TO_KG = 2.20462
 
 
-def get_vehicle_prices_per_kg(vehicles: dict[str, tuple[float, float]]) -> dict[str, float]:
-    return {name: price / weight * POUNDS_TO_KG for name, (price, weight) in vehicles.items()}
+def get_vehicle_prices_per_kg(
+    vehicles: dict[str, tuple[float, float]],
+) -> dict[str, float]:
+    return {
+        name: price / weight * POUNDS_TO_KG
+        for name, (price, weight) in vehicles.items()
+    }
 
 
 def get_cheese_prices_per_kg(cheeses: dict[str, float]) -> dict[str, float]:
-    return {name: price * POUNDS_TO_KG for name, price in cheeses.items()}
+    return {
+        name: price * POUNDS_TO_KG
+        for name, price in cheeses.items()
+    }
 
 
 def create_price_dataframe(items: dict[str, float], category: str) -> pd.DataFrame:
