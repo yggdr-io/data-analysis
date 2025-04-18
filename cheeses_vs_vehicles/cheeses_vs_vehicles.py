@@ -95,6 +95,7 @@ def plot_price_comparison(
 
 
 def main():
+    # data source: https://x.com/andrewmccalip/status/1910851406212587982
     vehicles = {
         "Mitsubishi Mirage": (16695, 2084),
         "Nissan Versa": (16130, 2598),
