@@ -68,10 +68,10 @@ def plot_price_comparison(
     )
 
     plt.title(
-        "Price per Pound: Vehicles vs Cheeses (Interleaved, Descending, Max $400)",
+        "Price per KG: Vehicles vs Cheeses",
         fontsize=16,
     )
-    plt.xlabel("Price per Pound (USD)", fontsize=18, labelpad=25)
+    plt.xlabel("Price per KG (USD)", fontsize=18, labelpad=25)
     plt.ylabel("Items", fontsize=12)
     plt.xscale("log")
     plt.grid(True, which="both", linestyle="--", linewidth=0.5, axis="x")
