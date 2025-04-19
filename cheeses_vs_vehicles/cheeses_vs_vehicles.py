@@ -169,6 +169,7 @@ def main():
         "Paneer": 8.75,
         "Wensleydale": 20.50,
         "Roquefort": 31.00,
+        "Saint Agur": 36.60,
     }
 
     vehicle_prices = get_vehicle_prices_per_kg(vehicles)
